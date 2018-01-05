@@ -1,0 +1,33 @@
+version: '2'
+services:
+  db:
+    container_name: dac-db
+    restart: always
+    image: postgres:9.6.4-alpine
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: dac_dev,dac_test
+      POSTGRES_USER: dac
+      POSTGRES_PASSWORD: dac123
+    ports:
+      - 5433:5432
+    volumes:
+      - dac_pg_data:/var/lib/postgresql/data
+
+  web:
+    container_name: dac-web
+    restart: always
+    build: .
+    env_file: .env
+    command: sh -c "bundle exec puma -C config/puma.rb"
+    volumes:
+      - .:/api
+    ports:
+      - 3000:3000
+    links:
+      - db
+    depends_on:
+      - db
+
+volumes:
+  dac_pg_data:
+    driver: local
