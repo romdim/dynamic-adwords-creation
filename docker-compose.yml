@@ -20,7 +20,7 @@ services:
     env_file: .env
     command: sh -c "bundle exec puma -C config/puma.rb"
     volumes:
-      - .:/api
+      - .:/dac
     ports:
       - 3000:3000
     links:
