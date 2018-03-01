@@ -30,6 +30,11 @@ gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 
+group :development, :test do
+  # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
+  gem 'pry', '~> 0.11.3'
+end
+
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
