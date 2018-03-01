@@ -1,9 +1,14 @@
+require 'facebook_ads'
+
 class CampaignController < ApplicationController
 
   PAGE_SIZE = 50
 
   def index()
     @selected_account = selected_account
+
+    ad_account = FacebookAds::AdAccount.get 'act_'+ENV['ACCOUNT_ID'], 'name'
+    @fb_campaigns = ad_account.campaigns(fields: 'name, status').all
 
     if @selected_account
       response = request_campaigns_list()

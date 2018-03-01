@@ -1,4 +1,4 @@
-<h1>Campaigns list</h1>
+<h1>Google Campaigns list</h1>
 
 <% if @selected_account.nil? %>
   <div class="notice">No account selected!</div>
@@ -23,6 +23,26 @@
     </table>
   <% end %>
 
+<% end %>
+
+<h1>Facebook Campaigns list</h1>
+
+<% if @fb_campaigns.nil? or @fb_campaigns.empty? %>
+  <ul><li>No campaigns available.</ul>
+<% else %>
+  <ul><li>Total number of campaigns: <%= @fb_campaigns.count %></ul>
+  <table>
+    <tr>
+      <th>ID
+      <th>Name
+      <th>Status
+  <% @fb_campaigns.each do |campaign| %>
+    <tr>
+      <td><%= campaign.id %>
+      <td><%= campaign.name %>
+      <td><%= campaign.status %>
+  <% end %>
+  </table>
 <% end %>
 
 <div id="local-footer">
