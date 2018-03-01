@@ -20,7 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 
 # AdWords API gem.
-gem 'google-adwords-api', '~> 0.24.0'
+gem 'google-adwords-api', '~> 1.1.0'
 
 # Gem for OAuth authorization.
 gem 'oauth2'
