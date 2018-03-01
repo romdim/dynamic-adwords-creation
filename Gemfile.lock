@@ -57,6 +57,9 @@ GEM
     crass (1.0.3)
     erubi (1.7.0)
     execjs (2.7.0)
+    facebookads (0.2.11.0)
+      faraday
+      json
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -86,6 +89,7 @@ GEM
       socksify
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
+    json (2.1.0)
     jwt (1.5.6)
     libv8 (3.16.14.19-x86_64-linux)
     listen (3.1.5)
@@ -201,6 +205,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.2)
+  facebookads
   google-adwords-api (~> 1.1.0)
   listen (>= 3.0.5, < 3.2)
   oauth2

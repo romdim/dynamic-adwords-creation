@@ -19,8 +19,10 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
-# AdWords API gem.
+# AdWords API gem
 gem 'google-adwords-api', '~> 1.1.0'
+# Facebook API gem
+gem 'facebookads'
 
 # Gem for OAuth authorization.
 gem 'oauth2'

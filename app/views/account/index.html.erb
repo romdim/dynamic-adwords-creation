@@ -1,5 +1,6 @@
 <h1>Account hierarchy</h1>
 
+<h2>Google</h2>
 <ul>
 
 <% if @accounts.empty? %>
@@ -23,6 +24,13 @@
   <% end %>
 <% end %>
 
+</ul>
+
+<h2>Facebook</h2>
+<ul>
+  <li>
+    <%= @ad_account.id %> (<%= @ad_account.name %>)
+  </li>
 </ul>
 
 <div id="local-footer">

@@ -1,6 +1,9 @@
+require 'facebook_ads'
+
 class AccountController < ApplicationController
 
   def index()
+    @ad_account = FacebookAds::AdAccount.get(ENV['ACCOUNT_ID'], 'name')
     @selected_account = selected_account
     graph = get_accounts_graph()
     @accounts = Account.get_accounts_map(graph)
