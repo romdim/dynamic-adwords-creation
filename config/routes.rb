@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :ad_groups
+  resources :ad_groups do
+    member do
+      resources :ads
+    end
+  end
   get "home/index"
 
   get "campaign/index"

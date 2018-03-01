@@ -1,9 +1,9 @@
 class AdGroupsController < ApplicationController
+  before_action :set_account
   before_action :set_ad_group, only: [:show, :edit, :update, :destroy]
 
   # GET /ad_groups
   def index
-    @selected_account = selected_account
     @ad_groups = AdGroup.all
   end
 
@@ -13,7 +13,6 @@ class AdGroupsController < ApplicationController
 
   # GET /ad_groups/new
   def new
-    @selected_account = selected_account
     @ad_group = AdGroup.new
   end
 
@@ -23,11 +22,9 @@ class AdGroupsController < ApplicationController
 
   # POST /ad_groups
   def create
-    @selected_account = selected_account
-
     if @selected_account
-      response = add_ad_group(ad_group_params)
-      @ad_group = AdGroup.new(ad_group_params)
+      response = add_ad_group ad_group_params
+      @ad_group = AdGroup.new ad_group_params
       @ad_group.id = response.first[:id]
       @ad_group.campaign_name = response.first[:campaign_name]
 
@@ -57,6 +54,10 @@ class AdGroupsController < ApplicationController
   end
 
   private
+  def set_account
+    @selected_account = selected_account
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_ad_group
     @ad_group = AdGroup.find(params[:id])

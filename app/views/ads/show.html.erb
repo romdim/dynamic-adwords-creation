@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ad group:</strong>
+  <%= @ad.ad_group_id %>
+</p>
+
+<p>
+  <strong>Headline part1:</strong>
+  <%= @ad.headline_part1 %>
+</p>
+
+<p>
+  <strong>Headline part2:</strong>
+  <%= @ad.headline_part2 %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ad.description %>
+</p>
+
+<p>
+  <strong>Final urls:</strong>
+  <%= @ad.final_urls %>
+</p>
+
+<p>
+  <strong>Path1:</strong>
+  <%= @ad.path1 %>
+</p>
+
+<p>
+  <strong>Path2:</strong>
+  <%= @ad.path2 %>
+</p>
+
+<%= link_to 'Edit', edit_ad_path(@ad) %> |
+<%= link_to 'Back', ads_path %>

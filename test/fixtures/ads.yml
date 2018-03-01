@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ad_group_id: 1
+  headline_part1: MyString
+  headline_part2: MyString
+  description: MyString
+  final_urls: MyString
+  path1: MyString
+  path2: MyString
+
+two:
+  ad_group_id: 1
+  headline_part1: MyString
+  headline_part2: MyString
+  description: MyString
+  final_urls: MyString
+  path1: MyString
+  path2: MyString

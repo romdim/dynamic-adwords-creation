@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111010105) do
+ActiveRecord::Schema.define(version: 20180301175518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 20180111010105) do
     t.string "status"
     t.string "xsi_type"
     t.float "micro_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ads", force: :cascade do |t|
+    t.bigint "ad_group_id"
+    t.string "headline_part1"
+    t.string "headline_part2"
+    t.string "description"
+    t.string "final_urls"
+    t.string "path1"
+    t.string "path2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -35,5 +35,9 @@
   <%= @ad_group.micro_amount %>
 </p>
 
+<%= link_to 'Related Ads', ads_path(@ad_group) %>
+
+<br />
+
 <%= link_to 'Edit', edit_ad_group_path(@ad_group) %> |
 <%= link_to 'Back', ad_groups_path %>
