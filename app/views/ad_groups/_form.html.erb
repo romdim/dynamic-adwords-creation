@@ -1,0 +1,42 @@
+<%= form_with(model: ad_group, local: true) do |form| %>
+  <% if ad_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ad_group.errors.count, "error") %> prohibited this ad_group from being saved:</h2>
+
+      <ul>
+      <% ad_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :campaign_id %>
+    <%= form.number_field :campaign_id, id: :ad_group_campaign_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :ad_group_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, AdGroup.statuses.map { |key, value| [key.humanize, key] } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :xsi_type %>
+    <%= form.select :xsi_type, AdGroup.xsi_types.map { |key, value| [key.humanize, key] } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :micro_amount %>
+    <%= form.text_field :micro_amount, id: :ad_group_micro_amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

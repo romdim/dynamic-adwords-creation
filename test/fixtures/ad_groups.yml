@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  campaign_id: 1
+  name: MyString
+  campaign_name: MyString
+  status: MyString
+  xsi_type: MyString
+  micro_amount: 1.5
+
+two:
+  id: 1
+  campaign_id: 1
+  name: MyString
+  campaign_name: MyString
+  status: MyString
+  xsi_type: MyString
+  micro_amount: 1.5

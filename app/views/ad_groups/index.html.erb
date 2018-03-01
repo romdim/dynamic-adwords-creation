@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ad Groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Campaign</th>
+      <th>Name</th>
+      <th>Campaign name</th>
+      <th>Status</th>
+      <th>Xsi type</th>
+      <th>Micro amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ad_groups.each do |ad_group| %>
+      <tr>
+        <td><%= ad_group.id %></td>
+        <td><%= ad_group.campaign_id %></td>
+        <td><%= ad_group.name %></td>
+        <td><%= ad_group.campaign_name %></td>
+        <td><%= ad_group.status %></td>
+        <td><%= ad_group.xsi_type %></td>
+        <td><%= ad_group.micro_amount %></td>
+        <td><%= link_to 'Show', ad_group %></td>
+        <td><%= link_to 'Edit', edit_ad_group_path(ad_group) %></td>
+        <td><%= link_to 'Destroy', ad_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ad Group', new_ad_group_path %>

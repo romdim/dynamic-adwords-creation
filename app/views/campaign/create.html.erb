@@ -1,0 +1,14 @@
+<h1>Added Ad Group</h1>
+
+<% if @selected_account.nil? %>
+  <div class="notice">No account selected!</div>
+
+<% else %>
+
+  Hello there!
+
+<% end %>
+
+<div id="local-footer">
+  <span class="small-print"><%= link_to("Back to home", home_index_path) %></span>
+</div>
