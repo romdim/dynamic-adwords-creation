@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301175518) do
+ActiveRecord::Schema.define(version: 20180302001914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ad_groups", id: false, force: :cascade do |t|
     t.bigint "id"
-    t.integer "campaign_id"
+    t.bigint "campaign_id"
     t.string "name"
     t.string "campaign_name"
     t.string "status"
