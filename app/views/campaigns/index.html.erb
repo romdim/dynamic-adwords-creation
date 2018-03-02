@@ -19,6 +19,8 @@
         <td><%= campaign.id %>
         <td><%= campaign.name %>
         <td><%= campaign.status %>
+        <td><%= link_to 'Ad Groups', ad_groups_path(campaign.id) %></td>
+        <td><%= link_to 'Destroy', campaign_path(campaign.id), method: :delete, data: { confirm: 'Are you sure?' }  %></td>
     <% end %>
     </table>
   <% end %>
@@ -41,9 +43,15 @@
       <td><%= campaign.id %>
       <td><%= campaign.name %>
       <td><%= campaign.status %>
+      <td><%= link_to 'Ad Groups', ad_groups_path(campaign.id) %></td>
+      <td><%= link_to 'Destroy', campaign_path(campaign.id), method: :delete, data: { confirm: 'Are you sure?' }  %></td>
   <% end %>
   </table>
 <% end %>
+
+<br>
+
+<%= link_to 'New Campaign', new_campaign_path %>
 
 <div id="local-footer">
   <span class="small-print"><%= link_to("Back to home", home_index_path) %></span>

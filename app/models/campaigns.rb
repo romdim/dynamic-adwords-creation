@@ -1,4 +1,4 @@
-class Campaign
+class Campaigns
   attr_reader :id
   attr_reader :name
   attr_reader :status
@@ -13,7 +13,7 @@ class Campaign
     result = {}
     if response[:entries]
       response[:entries].each do |api_campaign|
-        campaign = Campaign.new(api_campaign)
+        campaign = Campaigns.new(api_campaign)
         result[campaign.id] = campaign
       end
     end

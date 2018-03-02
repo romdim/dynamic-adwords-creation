@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  resources :ad_groups do
-    member do
-      resources :ads
-    end
-  end
   get "home/index"
 
-  get "campaign/index"
-  get "campaign/create"
+  resources :campaigns, only: [:index, :create, :new, :destroy], param: :campaign_id do
+    member do
+      resources :ad_groups, param: :ad_group_id do
+        member do
+          resources :ads
+        end
+      end
+    end
+  end
 
   get "account/index"
   get "account/input"

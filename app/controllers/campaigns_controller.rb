@@ -1,6 +1,6 @@
 require 'facebook_ads'
 
-class CampaignController < ApplicationController
+class CampaignsController < ApplicationController
 
   PAGE_SIZE = 50
 
@@ -13,10 +13,32 @@ class CampaignController < ApplicationController
     if @selected_account
       response = request_campaigns_list()
       if response
-        @campaigns = Campaign.get_campaigns_list(response)
+        @campaigns = Campaigns.get_campaigns_list(response)
         @campaign_count = response[:total_num_entries]
       end
     end
+  end
+
+  def new
+    @campaign = Campaigns.new({id: nil, name: nil, status: nil})
+  end
+
+  # POST /campaigns
+  def create
+    @ad_account = FacebookAds::AdAccount.get 'act_'+ENV['ACCOUNT_ID'], 'name'
+    pp params
+    @ad_account.campaigns.create({
+                                    name: params[:campaign][:name],
+                                    objective: 'CONVERSIONS',
+                                    status: params[:campaign][:status],
+                                })
+    redirect_to campaigns_path
+  end
+
+  # DELETE /campaigns/1
+  def destroy
+    FacebookAds::Campaign.get(params[:campaign_id]).delete
+    redirect_to campaigns_url, notice: "Campaign #{params[:id]} was successfully destroyed."
   end
 
   private

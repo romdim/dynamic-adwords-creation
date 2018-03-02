@@ -1,0 +1,17 @@
+<form action="/campaigns" accept-charset="UTF-8" method="post">
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="campaign[name]">
+  </div>
+  <div class="field">
+    <label for="Status">Status</label>
+    <select name="campaign[status]">
+      <option value="ACTIVE">Enabled</option>
+      <option value="PAUSED">Paused</option>
+      <option value="DELETED">Disabled</option>
+    </select>
+  </div>
+  <div class="actions">
+    <input type="submit" name="commit" value="Create Campaign" data-disable-with="Create Campaign">
+  </div>
+</form>

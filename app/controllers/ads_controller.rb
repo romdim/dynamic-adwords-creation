@@ -4,7 +4,7 @@ class AdsController < ApplicationController
 
   # GET /ads
   def index
-    @ads = Ad.where(ad_group_id: params[:id]).all
+    @ads = Ad.where(ad_group_id: params[:ad_group_id]).all
   end
 
   # GET /ads/1
@@ -26,10 +26,10 @@ class AdsController < ApplicationController
       response = add_expanded_text_ad ad_params
       @ad = Ad.new ad_params
       @ad.id = response.first[:id]
-      @ad.ad_group_id = params[:id]
+      @ad.ad_group_id = params[:ad_group_id]
 
       if @ad.save
-        redirect_to @ad, notice: 'Ad was successfully created.'
+        redirect_to ads_path, campaign_id: params[:ad_group_id], ad_group_id: params[:ad_group_id], notice: 'Ad was successfully created.'
       else
         render :new
       end
@@ -92,7 +92,7 @@ class AdsController < ApplicationController
     }
 
     ad_group_ad = {
-        :ad_group_id => params[:id],
+        :ad_group_id => params[:ad_group_id],
         :ad => expanded_text_ad,
         # Additional properties (non-required).
         :status => 'PAUSED'

@@ -4,7 +4,7 @@ class AdGroupsController < ApplicationController
 
   # GET /ad_groups
   def index
-    @ad_groups = AdGroup.all
+    @ad_groups = AdGroup.where(campaign_id: params[:campaign_id]).all
   end
 
   # GET /ad_groups/1
@@ -23,13 +23,60 @@ class AdGroupsController < ApplicationController
   # POST /ad_groups
   def create
     if @selected_account
-      response = add_ad_group ad_group_params
       @ad_group = AdGroup.new ad_group_params
-      @ad_group.id = response.first[:id]
-      @ad_group.campaign_name = response.first[:campaign_name]
 
+      begin
+        ad_account = FacebookAds::AdAccount.get('act_'+ENV['ACCOUNT_ID'])
+        campaign = FacebookAds::Campaign.get params[:id]
+        pp campaign.name
+        status = case ad_group_params[:status]
+                   when 'enabled'
+                     'ACTIVE'
+                   when 'disabled'
+                     'DELETED'
+                   else
+                     ad_group_params[:status]
+                 end
+        # ad_account.adsets.create({
+        #                              name: 'Initiated Checkout but not purchased',
+        #                              bid_amount: 3000,
+        #                              billing_event: 'IMPRESSIONS',
+        #                              optimization_goal: 'OFFSITE_CONVERSIONS',
+        #                              daily_budget: 15000,
+        #                              campaign_id: '120330000247171708',
+        #                              status: 'PAUSED',
+        #                              targeting: {
+        #                                geo_locations: {
+        #                                  countries:
+        #                                    ['US']
+        #                                }
+        #                              },
+        #                              promoted_object: {
+        #                                page_id: '41419381100'
+        #                              }
+        #                          })
+        response = ad_account.adsets.create({
+          campaign_id: params[:campaign_id],
+          name: ad_group_params[:name],
+          status: status,
+          daily_budget: ad_group_params[:micro_amount],
+          billing_event: 'IMPRESSIONS',
+          bid_amount: ad_group_params[:micro_amount]
+        })
+        pp response
+        @ad_group.id = 1
+        @ad_group.campaign_id = params[:id]
+        @ad_group.campaign_name = "My Second campaign"
+      rescue
+        response = add_ad_group ad_group_params
+        @ad_group.id = response.first[:id]
+        @ad_group.campaign_id = params[:campaign_id]
+        @ad_group.campaign_name = response.first[:campaign_name]
+      end
+
+      pp @ad_group
       if @ad_group.save
-        redirect_to @ad_group, notice: 'Ad group was successfully created.'
+        redirect_to ad_groups_path, campaign_id: params[:campaign_id], notice: 'Ad group was successfully created.'
       else
         render :new
       end
@@ -60,7 +107,7 @@ class AdGroupsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_ad_group
-    @ad_group = AdGroup.find(params[:id])
+    @ad_group = AdGroup.find(params[:ad_group_id])
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -82,7 +129,7 @@ class AdGroupsController < ApplicationController
         {
             :name => ad_group['name'],
             :status => ad_group['status'],
-            :campaign_id => ad_group['campaign_id'],
+            :campaign_id => params[:campaign_id],
             :bidding_strategy_configuration => {
                 :bids => [
                     {

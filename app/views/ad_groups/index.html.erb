@@ -26,9 +26,9 @@
         <td><%= ad_group.status %></td>
         <td><%= ad_group.xsi_type %></td>
         <td><%= ad_group.micro_amount %></td>
-        <td><%= link_to 'Show', ad_group %></td>
-        <td><%= link_to 'Edit', edit_ad_group_path(ad_group) %></td>
-        <td><%= link_to 'Destroy', ad_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', ad_group_path(campaign_id: ad_group.campaign_id, ad_group_id: ad_group.id) %></td>
+        <td><%= link_to 'Edit', edit_ad_group_path(campaign_id: ad_group.campaign_id, ad_group_id: ad_group.id) %></td>
+        <td><%= link_to 'Destroy', ad_group_path(campaign_id: ad_group.campaign_id, ad_group_id: ad_group.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

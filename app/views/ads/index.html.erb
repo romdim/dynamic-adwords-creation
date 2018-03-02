@@ -26,9 +26,9 @@
         <td><%= ad.final_urls %></td>
         <td><%= ad.path1 %></td>
         <td><%= ad.path2 %></td>
-        <td><%= link_to 'Show', ad %></td>
-        <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
-        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', ad_path(campaign_id: ad.ad_group_id, ad_group_id: ad.ad_group_id, id: ad.id) %></td>
+        <td><%= link_to 'Edit', edit_ad_path(campaign_id: ad.ad_group_id, ad_group_id: ad.ad_group_id, id: ad.id) %></td>
+        <td><%= link_to 'Destroy', ad_path(campaign_id: ad.ad_group_id, ad_group_id: ad.ad_group_id, id: ad.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
